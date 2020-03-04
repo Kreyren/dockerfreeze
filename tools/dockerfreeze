@@ -4,15 +4,12 @@
 # Affected by https://github.com/koalaman/shellcheck/issues/1771 for directives comments
 
 _dockerfreeze() {
-    # FIXME: Are cmds used?
-    # shellcheck disable=SC2034
+    # shellcheck disable=SC2034 # FIXME: Are cmds used?
     local cur prev opts cmds
-    # used by complete
-    # shellcheck disable=SC2034
+    # shellcheck disable=SC2034 # used by complete
     COMREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    # used by complete
-    # shellcheck disable=SC2034
+    # shellcheck disable=SC2034 # used by complete
     prev="${COMP_WORDS[COMP_CWORD-1]}"
     opts="-g -h -v -o --version --help --gitpod --output"
     if [[ ${cur} == -* ]] ; then
