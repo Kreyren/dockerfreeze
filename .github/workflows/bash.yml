@@ -20,8 +20,9 @@ jobs:
         run: |
           cd "$GITHUB_WORKSPACE" # Change dir in required workspace
           # Process files
-          for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep -E '\.bash$|tools/dockerfreeze') ; do
-            # Gradlew can be a bash file
+          ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
+          while IFS= read -r -d '' file; do
+            # Logic for bash completion file
             if [ "$file" = tools/dockerfreeze ]; then
               case "$(head -n1 "$file")" in
                 "\#!/bin/false")
