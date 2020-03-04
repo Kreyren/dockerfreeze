@@ -1,4 +1,9 @@
 #!/bin/sh
+
+# shellcheck shell=bash
+
+dgjksjdgjksh # this is test
+
 _dockerfreeze() {
     local cur prev opts cmds
     COMREPLY=()
