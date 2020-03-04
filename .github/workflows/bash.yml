@@ -12,11 +12,13 @@ jobs:
   # Linting
   lint:
     runs-on: ubuntu-latest
+    container: debian:latest
     steps:
-      - uses: docker://debian:latest
       - uses: actions/checkout@v2
       - name: Installing dependencies..
         run: |
+          /usr/bin/docker run --name debianlatest_0f3987 
+
           if ! apt list --installed 2>/dev/null | grep -q ".*shellcheck.*"; then
             sudo apt install -y shellcheck
           elif apt list --installed 2>/dev/null | grep -q ".*shellcheck.*"; then
