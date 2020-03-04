@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: debian:latest
       - name: Installing dependencies..
         run: if ! apt list --installed 2>/dev/null | grep -q ".*shellcheck.*"; then apt install -y shellcheck; fi
       - name: Linting..
         run: |
-          shellcheck --version ; exit 1
           cd "$GITHUB_WORKSPACE"
 
           # Process files
