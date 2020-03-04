@@ -20,7 +20,7 @@ jobs:
         run: |
           cd "$GITHUB_WORKSPACE"
 
-          die() { echo "$1" ; exit 1;}; die ping
+          die() { echo "$1" ; exit 1;}; die "$(pwd)"
           # Process files
           ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
           while IFS= read -r -d '' file; do
