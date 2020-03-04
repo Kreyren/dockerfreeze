@@ -17,9 +17,9 @@ jobs:
       - name: Installing dependencies..
         run: if ! apt list --installed 2>/dev/null | grep -q ".*shellcheck.*"; then apt install -y shellcheck; fi
       - name: Linting..
+        # Process files
+        ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
         run: |
-          # Process files
-          ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
           cd "$GITHUB_WORKSPACE" && while IFS= read -r -d '' file; do
             # Logic for bash completion file
             if [ "$file" = tools/dockerfreeze ]; then
