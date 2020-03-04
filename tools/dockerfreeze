@@ -2,8 +2,6 @@
 
 # shellcheck shell=bash
 
-[[ $foo==0 ]] # this is test
-
 _dockerfreeze() {
     local cur prev opts cmds
     COMREPLY=()
