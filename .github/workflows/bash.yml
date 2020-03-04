@@ -39,7 +39,9 @@ jobs:
       - name: Linting..
         shell: bash
         run: |
-          #cd "$GITHUB_WORKSPACE"
+          cd "$GITHUB_WORKSPACE"
+
+          ls -la
           # Process files
           ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
           git ls-files -z -- '*.bash' tools/dockerfreeze | while IFS= read -rd '' file; do
