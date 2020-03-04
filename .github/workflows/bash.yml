@@ -6,7 +6,7 @@ on:
     types: [synchronize, opened, reopened, ready_for_review]
     paths:
     - '**.bash'
-    - "gradlew"
+    - "tools/dockerfreeze"
 
 jobs:
   # Linting
@@ -22,13 +22,13 @@ jobs:
           # Process files
           for file in $(git ls-tree --name-only -r ${{ github.sha }} | grep -E '\.bash$|tools/dockerfreeze') ; do
             # Gradlew can be a bash file
-            if [ "$file" = gradlew ]; then
+            if [ "$file" = tools/dockerfreeze ]; then
               case "$(head -n1 "$file")" in
-                "\#!/usr/bin/env bash" | "\#!/bin/bash")
+                "\#!/bin/false")
                   printf 'linting bash file %s' "$file"
                   shellcheck --external-sources --shell=bash "$file"
               esac
-            elif [ "$file" != gradlew ]; then
+            elif [ "$file" != tools/dockerfreeze ]; then
               printf 'linting bash file %s' "$file"
               shellcheck --external-sources --shell=bash "$file"
             else
