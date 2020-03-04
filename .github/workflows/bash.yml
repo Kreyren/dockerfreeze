@@ -20,6 +20,6 @@ jobs:
         # Process files
         ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
         run: |
-          cd "$GITHUB_WORKSPACE" && while IFS= read -r -d '' file; do
-            exit 1
+          cd "$GITHUB_WORKSPACE" && while IFS= read -r -d '' file; do \
+            echo test; \
           done < <(git ls-files -- '*.bash' tools/dockerfreeze)
