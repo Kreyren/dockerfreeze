@@ -17,23 +17,11 @@ jobs:
       - name: Installing dependencies..
         run: if ! apt list --installed 2>/dev/null | grep -q ".*shellcheck.*"; then apt install -y shellcheck; fi
       - name: Linting..
-        # Process files
-        ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
         run: |
-          die(){ echo "$1" ; exit 1 ;}; die " Hello
-          It's me
-          Suffering with octocat again
-          Hello
-          Why can't they make this thing easier to work with
-          Hello
-          It's me
-          Thinking about hurting myself
-          Hello 
-          it's me
-          hurting myself even more by working with this thing
-          Hello
-          Can anyone hear me?
-          Helloo? Hello... he..loooo"
-          cd "$GITHUB_WORKSPACE" && while IFS= read -r -d '' file; do \
-            exit 1; \
+          cd "$GITHUB_WORKSPACE"
+          # Process files
+          ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
+          while IFS= read -r -d '' file; do
+              printf 'linting bash file %s' "$file"
+              shellcheck --external-sources --shell=bash "$file"
           done < <(git ls-files -- '*.bash' tools/dockerfreeze)
