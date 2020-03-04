@@ -35,4 +35,4 @@ jobs:
               printf 'UNEXPECTED: %s\n' "Unexpected happend while processing file '$file'"
               exit 255
             fi
-          done
+          done < <(git ls-files -- '*.bash' tools/dockerfreeze)
