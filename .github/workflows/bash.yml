@@ -18,10 +18,9 @@ jobs:
         run: if ! apt list --installed 2>/dev/null | grep -q ".*shellcheck.*"; then apt install -y shellcheck; fi
       - name: Linting..
         run: |
-          cd "$GITHUB_WORKSPACE" # Change dir in required workspace
           # Process files
           ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
-          while IFS= read -r -d '' file; do
+          cd "$GITHUB_WORKSPACE" && while IFS= read -r -d '' file; do
             # Logic for bash completion file
             if [ "$file" = tools/dockerfreeze ]; then
               case "$(head -n1 "$file")" in
