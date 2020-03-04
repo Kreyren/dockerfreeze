@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: debian:latest
+      - uses: docker://debian:latest
       - name: Installing dependencies..
         run: if ! apt list --installed 2>/dev/null | grep -q ".*shellcheck.*"; then apt install -y shellcheck; fi
       - name: Linting..
