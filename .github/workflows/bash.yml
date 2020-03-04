@@ -21,18 +21,5 @@ jobs:
         ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
         run: |
           cd "$GITHUB_WORKSPACE" && while IFS= read -r -d '' file; do
-            # Logic for bash completion file
-            if [ "$file" = tools/dockerfreeze ]; then
-              case "$(head -n1 "$file")" in
-                "\#!/bin/false")
-                  printf 'linting bash file %s' "$file"
-                  shellcheck --external-sources --shell=bash "$file"
-              esac
-            elif [ "$file" != tools/dockerfreeze ]; then
-              printf 'linting bash file %s' "$file"
-              shellcheck --external-sources --shell=bash "$file"
-            else
-              printf 'UNEXPECTED: %s\n' "Unexpected happend while processing file '$file'"
-              exit 255
-            fi
+            echo test
           done < <(git ls-files -- '*.bash' tools/dockerfreeze)
