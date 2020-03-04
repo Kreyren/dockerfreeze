@@ -20,7 +20,7 @@ jobs:
       - name: Linting..
         run: |
           cd "$GITHUB_WORKSPACE"
-
+          shellcheck --version
           # Process files
           ## NOTICE: Do not use for loop to avoid pitfall https://mywiki.wooledge.org/BashPitfalls#pf1
           git ls-files -z -- '*.bash' tools/dockerfreeze | while IFS= read -rd '' file; do
