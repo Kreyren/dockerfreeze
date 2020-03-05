@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     container: debian:latest
     steps:
-      - uses: actions/checkout@v2
       - name: Installing dependencies..
         run: |
           # Sync repos
@@ -37,7 +36,7 @@ jobs:
             exit 255
           fi 
       - name: Linting..
-        shell: bash
+      - uses: actions/checkout@v2
         run: |
           cd "$GITHUB_WORKSPACE"
 
