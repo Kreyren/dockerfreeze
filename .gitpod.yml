@@ -1,3 +1,6 @@
+image:
+  file: gitpod/gitpod.dockerfile
+
 tasks:
   - init: cargo build && cargo install --path . --force
     command: dockerfreeze --help
